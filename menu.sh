@@ -5,7 +5,7 @@ show_menu(){
     number=`echo "\033[33m"` #yellow
     bgred=`echo "\033[41m"`
     fgred=`echo "\033[31m"`
-    printf "\n${menu}*********************************************${normal}\n"
+    printf "\n${menu}********* WAGO Provisioning Tool *********${normal}\n"
     printf "${menu}**${number} 1)${menu} Install Docker ${normal}\n"
     printf "${menu}**${number} 2)${menu} Disable PLC Runtime ${normal}\n"
     printf "${menu}**${number} 3)${menu} Restart APLC ${normal}\n"
