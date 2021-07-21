@@ -35,7 +35,7 @@ while [ $opt != '' ]
             option_picked "Option 1 Picked";
             printf "sudo mount /dev/sdh1 /mnt/DropBox/; #The 3 terabyte";
             show_menu;
-        ;;
+            ;;
         2) clear;
             option_picked "Option 2 Picked";
             printf "sudo mount /dev/sdi1 /mnt/usbDrive; #The 500 gig drive";
@@ -61,4 +61,8 @@ while [ $opt != '' ]
         ;;
       esac
     fi
+<<<<<<< HEAD
 done
+=======
+done            
+>>>>>>> fba3d42446b38928c6c06994991f4480e790cb3f
