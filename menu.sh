@@ -10,7 +10,7 @@ show_menu(){
     printf "${menu} ${number} 2)${menu} Disable PLC Runtime ${normal}\n"
     printf "${menu} ${number} 3)${menu} Disable OPC-UA & IO-Check Services${normal}\n"
     printf "${menu} ${number} 4)${menu} Install KBUS Daemon ${normal}\n"
-    printf "${menu} ${number} 5)${menu} Install KBUS Daemon ${normal}\n"
+    printf "${menu} ${number} 5)${menu} Install Containers ${normal}\n"
 
     printf "${menu} ${number} 9)${menu} Restart PLC ${normal}\n"
     printf "${menu}*********************************************${normal}\n"
@@ -87,10 +87,10 @@ while [ $opt != '' ]
         5) clear; # Docker sub-menu
             option_picked "Option 5 Picked - Install Containers";
             printf "Select Container";
-            show_docker_menu;
+            show_container_menu;
         ;;
         8) clear; # Return to main menu
-            show_dmenu;
+            show_menu;
         ;;
         9) clear;
             option_picked "Option 9 Picked - Rebooting";
