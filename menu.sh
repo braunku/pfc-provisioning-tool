@@ -71,7 +71,8 @@ while [ $opt != '' ]
         ;;
         x) clear;
             chmod +x menu.sh;
-            printf "Type ./menu.sh to re-open this tool\n";
+            printf "Type ./menu.sh to re-open this tool";
+            printf "\n";
             exit;
         ;;
         \n)exit;
