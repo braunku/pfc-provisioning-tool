@@ -34,7 +34,7 @@ show_container_menu(){
     printf "\n${menu}********* Docker Containers ***********${normal}\n"
     printf "${menu} ${number} a)${menu} Install Node-RED ${normal}\n"
     printf "${menu} ${number} b)${menu} Install Mosquitto ${normal}\n"
-    printf "${menu} ${number} c)${menu}  Install KBUS Modbus ${normal}\n"
+    printf "${menu} ${number} c)${menu} Install KBUS Modbus ${normal}\n"
     printf "${menu} ${number} d)${menu} Install Grafana ${normal}\n"
     printf "${menu} ${number} e)${menu} Install InfluxDB ${normal}\n"
     printf "${menu} ${number} 8)${menu} Main Menu ${normal}\n"
@@ -98,6 +98,45 @@ while [ $opt != '' ]
             printf "PLC will restart";
             show_menu;
         ;;
+
+        a) clear;
+            option_picked "Option a Picked - Install Node-RED";
+            docker volume create --name node_red_user_data;
+            docker run --restart unless-stopped -d --name node-red --network=host -v node_red_user_data:/data nodered/node-red:latest-minimal;
+            printf "Node-RED Installed";
+            show_container_menu;
+        ;;
+
+        b) clear;
+            option_picked "Option b Picked - Install Mosquitto Broker";
+            docker run -d --network=host --restart unless-stopped eclipse-mosquitto;
+            printf "Mosquitto Broker Installed";
+            show_container_menu;
+        ;;
+
+        c) clear;
+            option_picked "Option c Picked - Install KBUS Modbus Coupler";
+            docker run -d --init --restart unless-stopped --privileged -p 502:502 --name=pfc-modbus-slave -v /var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket wagoautomation/pfc-modbus-slave;
+            printf "KBUS Modbus Coupler Installed";
+            show_container_menu;
+        ;;
+
+        d) clear;
+            option_picked "Option d Picked - Install Grafana";
+            docker volume create grafana-storage;
+            docker run -d --restart unless-stopped --network=host --name=grafana -v grafana-storage:/var/lib/grafana grafana/grafana;
+            printf "Grafana Installed";
+            show_container_menu;
+        ;;
+
+        e) clear;
+            option_picked "Option e Picked - Install InfluxDB";
+            docker volume create influx-storage;
+            docker run -d --restart unless-stopped --name=influxdb --network=host -v influx-storage:/etc/influxdb/ influxdb
+            printf "InfluxDB Installed";
+            show_container_menu;
+        ;;
+
         x) clear;
             chmod +x menu.sh;
             printf "Type ./menu.sh to re-open this tool";
