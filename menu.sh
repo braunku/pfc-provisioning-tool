@@ -1,16 +1,16 @@
 #!/bin/sh
 show_menu(){
     normal=`echo "\033[m"`
-    menu=`echo "\033[36m"` #Blue
+    menu=`echo "\033[36m"` #blue
     number=`echo "\033[33m"` #yellow
     bgred=`echo "\033[41m"`
     fgred=`echo "\033[31m"`
-    printf "\n${menu}********* WAGO Provisioning Tool *********${normal}\n"
-    printf "${menu}**${number} 1)${menu} Install Docker ${normal}\n"
-    printf "${menu}**${number} 2)${menu} Disable PLC Runtime ${normal}\n"
-    printf "${menu}**${number} 3)${menu} Restart APLC ${normal}\n"
-    printf "${menu}**${number} 4)${menu} Some other commands ${normal}\n"
-    printf "${menu}**${number} 5)${menu} Some other commands${normal}\n"
+    printf "\n${menu}********* WAGO Provisioning Tool ***********${normal}\n"
+    printf "${menu} ${number} 1)${menu} Install Docker ${normal}\n"
+    printf "${menu} ${number} 2)${menu} Disable PLC Runtime ${normal}\n"
+    printf "${menu} ${number} 3)${menu} Restart APLC ${normal}\n"
+    printf "${menu} ${number} 4)${menu} Some other commands ${normal}\n"
+    printf "${menu} ${number} 5)${menu} Some other commands${normal}\n"
     printf "${menu}*********************************************${normal}\n"
     printf "Please enter a menu option and enter or ${fgred}x to exit. ${normal}"
     read opt
