@@ -8,7 +8,7 @@ show_menu(){
     printf "\n${menu}********* WAGO Provisioning Tool ***********${normal}\n"
     printf "${menu} ${number} 1)${menu} Install Docker ${normal}\n"
     printf "${menu} ${number} 2)${menu} Disable PLC Runtime ${normal}\n"
-    printf "${menu} ${number} 3)${menu} Disable OPC-UA ${normal}\n"
+    printf "${menu} ${number} 3)${menu} Disable OPC-UA & IO-Check Services${normal}\n"
     printf "${menu} ${number} 4)${menu} Install KBUS Daemon ${normal}\n"
     printf "${menu} ${number} 9)${menu} Restart PLC ${normal}\n"
     printf "${menu}*********************************************${normal}\n"
@@ -47,10 +47,12 @@ while [ $opt != '' ]
             show_menu;
         ;;
         3) clear;
-            option_picked "Option 3 Picked - Disable OPC-UA";
+            option_picked "Option 3 Picked - Disable OPC-UA & IO Check Services";
             /etc/config-tools/config-opcua --set=\"state\":\"disable\";
             /etc/config-tools/config-opcua -r 
             printf "OPC-UA Disabled";
+            /etc/config-tools/config_iocheckport state="disabled";
+            printf "IO Check Disabled";
             show_menu;
         ;;
         4) clear;
@@ -67,7 +69,10 @@ while [ $opt != '' ]
             printf "PLC will restart";
             show_menu;
         ;;
-        x)exit;
+        x) clear;
+            chmod +x menu.sh;
+            printf "Type ./menu.sh to re-open this tool";
+            exit;
         ;;
         \n)exit;
         ;;
