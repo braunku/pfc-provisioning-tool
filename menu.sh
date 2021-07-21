@@ -6,14 +6,13 @@ show_menu(){
     bgred=`echo "\033[41m"`
     fgred=`echo "\033[31m"`
     printf "\n${menu}*********************************************${normal}\n"
-    printf "${menu}**${number} 1)${menu} Disable PLC Runtime${normal}\n"
-    printf "${menu}**${number} 2)${menu} Install Docker${normal}\n"
-    printf "${menu}**${number} 3)${menu} Install KBUS Daemon${normal}\n"
-    printf "${menu}**${number} 4)${menu} Disable OPC-UA Server${normal}\n"
-    printf "${menu}**${number} 5)${menu} Disable IO-Check${normal}\n"
-    printf "${menu}**${number} 6)${menu} Restart PLC${normal}\n"
+    printf "${menu}**${number} 1)${menu} Mount dropbox ${normal}\n"
+    printf "${menu}**${number} 2)${menu} Mount USB 500 Gig Drive ${normal}\n"
+    printf "${menu}**${number} 3)${menu} Restart Apache ${normal}\n"
+    printf "${menu}**${number} 4)${menu} ssh Frost TomCat Server ${normal}\n"
+    printf "${menu}**${number} 5)${menu} Some other commands${normal}\n"
     printf "${menu}*********************************************${normal}\n"
-    printf "Please enter a menu option and enter or ${fgred}x to exit. ${normal$
+    printf "Please enter a menu option and enter or ${fgred}x to exit. ${normal}"
     read opt
 }
 
@@ -62,4 +61,4 @@ while [ $opt != '' ]
         ;;
       esac
     fi
-done            
+done
