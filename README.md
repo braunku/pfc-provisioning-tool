@@ -1,6 +1,7 @@
 <h1 style="font-weight:normal">
   &nbsp;WAGO Provisioning Tool&nbsp;
   <a href="provisioning gif"><img src=wago-provisioning-tool.png></a>
+  <a href="docker gif"><img src=docker-menu.png></a>
 </h1>
 
 An open source Provisioning Utility for WAGO PFC controllers.
