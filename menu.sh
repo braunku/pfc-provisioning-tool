@@ -8,9 +8,8 @@ show_menu(){
     printf "\n${menu}********* WAGO Provisioning Tool ***********${normal}\n"
     printf "${menu} ${number} 1)${menu} Install Docker ${normal}\n"
     printf "${menu} ${number} 2)${menu} Disable PLC Runtime ${normal}\n"
-    printf "${menu} ${number} 3)${menu} Restart APLC ${normal}\n"
-    printf "${menu} ${number} 4)${menu} Some other commands ${normal}\n"
-    printf "${menu} ${number} 5)${menu} Some other commands${normal}\n"
+    printf "${menu} ${number} 3)${menu} Disable OPC-UA ${normal}\n"
+    printf "${menu} ${number} 9)${menu} Restart PLC ${normal}\n"
     printf "${menu}*********************************************${normal}\n"
     printf "Please enter a menu option and enter or ${fgred}x to exit. ${normal}"
     read opt
@@ -41,20 +40,22 @@ while [ $opt != '' ]
             show_menu;
         ;;
         2) clear;
-            option_picked "Option 2 Picked";
+            option_picked "Option 2 Picked - Disable Runtime";
             /etc/config-tools/config_runtime runtime-version=0;
             printf "Stopping Runtime";
             show_menu;
         ;;
         3) clear;
-            option_picked "Option 3 Picked";
-            reboot now;
-            printf "PLC will restart";
+            option_picked "Option 4 Picked - Disable OPC-UA";
+            /etc/config-tools/config-opcua --set=\"state\":\"disable\";
+            /etc/config-tools/config-opcua -r 
+            printf "OPC-UA Disabled";
             show_menu;
         ;;
-        4) clear;
-            option_picked "Option 4 Picked";
-            printf "ssh lmesser@ -p 2010";
+        9) clear;
+            option_picked "Option 3 Picked - Rebooting";
+            reboot now;
+            printf "PLC will restart";
             show_menu;
         ;;
         x)exit;
