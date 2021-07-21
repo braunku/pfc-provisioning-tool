@@ -33,7 +33,9 @@ while [ $opt != '' ]
       case $opt in
         1) clear;
             option_picked "Option 1 Picked";
-            wget https://github.com/WAGO/docker-ipk/releases/download/v1.0.4-beta/docker_20.10.5_armhf.ipk && opkg install docker_* && rm docker_*
+            wget https://github.com/WAGO/docker-ipk/releases/download/v1.0.4-beta/docker_20.10.5_armhf.ipk
+            opkg install docker_20.10.5_armhf.ipk 
+            rm docker_20.10.5_armhf.ipk
             printf "Installing Docker v20.10.5";
             show_menu;
         ;;
