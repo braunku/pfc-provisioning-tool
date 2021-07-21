@@ -9,6 +9,7 @@ show_menu(){
     printf "${menu} ${number} 1)${menu} Install Docker ${normal}\n"
     printf "${menu} ${number} 2)${menu} Disable PLC Runtime ${normal}\n"
     printf "${menu} ${number} 3)${menu} Disable OPC-UA ${normal}\n"
+    printf "${menu} ${number} 4)${menu} Install KBUS Daemon ${normal}\n"
     printf "${menu} ${number} 9)${menu} Restart PLC ${normal}\n"
     printf "${menu}*********************************************${normal}\n"
     printf "Please enter a menu option and enter or ${fgred}x to exit. ${normal}"
@@ -46,14 +47,22 @@ while [ $opt != '' ]
             show_menu;
         ;;
         3) clear;
-            option_picked "Option 4 Picked - Disable OPC-UA";
+            option_picked "Option 3 Picked - Disable OPC-UA";
             /etc/config-tools/config-opcua --set=\"state\":\"disable\";
             /etc/config-tools/config-opcua -r 
             printf "OPC-UA Disabled";
             show_menu;
         ;;
+        4) clear;
+            option_picked "Option 4 Picked - Install KBUS Daemon";
+            wget https://github.com/jessejamescox/kbus-daemon-installer/archive/refs/heads/main.zip 
+            unzip main.zip 
+            sh kbus-daemon-installer-main/installer.sh
+            printf "KBUS Daemon Installed";
+            show_menu;
+        ;;
         9) clear;
-            option_picked "Option 3 Picked - Rebooting";
+            option_picked "Option 9 Picked - Rebooting";
             reboot now;
             printf "PLC will restart";
             show_menu;
