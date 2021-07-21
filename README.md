@@ -1,9 +1,9 @@
 <h1 style="font-weight:normal">
-  &nbsp;WAGO PFC Kbus Daemon Installer&nbsp;
-  <a href="kbus-daemon gif"><img src=images/daemon-installer.gif></a>
+  &nbsp;WAGO Provisioning Tool&nbsp;
+  <a href="provisioning gif"><img src=wago-provisioning-tool.png></a>
 </h1>
 
-An open source MQTT driver for WAGO PFC controllers backplane.
+An open source Provisioning Utility for WAGO PFC controllers.
 
 This project is still in beta - please use at your own risk and post any bugs to [issues](https://https://github.com/braunku/pfc-provisioning-tool/issues)
 <br>
