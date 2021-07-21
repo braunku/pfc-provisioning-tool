@@ -6,10 +6,10 @@ show_menu(){
     bgred=`echo "\033[41m"`
     fgred=`echo "\033[31m"`
     printf "\n${menu}*********************************************${normal}\n"
-    printf "${menu}**${number} 1)${menu} Mount dropbox ${normal}\n"
-    printf "${menu}**${number} 2)${menu} Mount USB 500 Gig Drive ${normal}\n"
-    printf "${menu}**${number} 3)${menu} Restart Apache ${normal}\n"
-    printf "${menu}**${number} 4)${menu} ssh Frost TomCat Server ${normal}\n"
+    printf "${menu}**${number} 1)${menu} Install Docker ${normal}\n"
+    printf "${menu}**${number} 2)${menu} Disable PLC Runtime ${normal}\n"
+    printf "${menu}**${number} 3)${menu} Restart APLC ${normal}\n"
+    printf "${menu}**${number} 4)${menu} Some other commands ${normal}\n"
     printf "${menu}**${number} 5)${menu} Some other commands${normal}\n"
     printf "${menu}*********************************************${normal}\n"
     printf "Please enter a menu option and enter or ${fgred}x to exit. ${normal}"
@@ -33,17 +33,20 @@ while [ $opt != '' ]
       case $opt in
         1) clear;
             option_picked "Option 1 Picked";
-            printf "sudo mount /dev/sdh1 /mnt/DropBox/; #The 3 terabyte";
+            wget https://github.com/WAGO/docker-ipk/releases/download/v1.0.4-beta/docker_20.10.5_armhf.ipk && opkg install docker_* && rm docker_*
+            printf "Installing Docker v20.10.5";
             show_menu;
         ;;
         2) clear;
             option_picked "Option 2 Picked";
-            printf "sudo mount /dev/sdi1 /mnt/usbDrive; #The 500 gig drive";
+            /etc/config-tools/config_runtime runtime-version=0
+            printf "Stopping Runtime";
             show_menu;
         ;;
         3) clear;
             option_picked "Option 3 Picked";
-            printf "sudo service apache2 restart";
+            reboot now
+            printf "PLC will restart";
             show_menu;
         ;;
         4) clear;
