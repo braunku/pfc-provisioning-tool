@@ -32,22 +32,23 @@ while [ $opt != '' ]
     else
       case $opt in
         1) clear;
-            option_picked "Option 1 Picked";
-            wget https://github.com/WAGO/docker-ipk/releases/download/v1.0.4-beta/docker_20.10.5_armhf.ipk
-            opkg install docker_20.10.5_armhf.ipk 
-            rm docker_20.10.5_armhf.ipk
-            printf "Installing Docker v20.10.5";
+            option_picked "Option 1 Picked - Install Docker";
+            wget https://github.com/WAGO/docker-ipk/releases/download/v1.0.4-beta/docker_20.10.5_armhf.ipk;
+            opkg install docker_20.10.5_armhf.ipk; 
+            rm docker_20.10.5_armhf.ipk;
+            printf "Docker v20.10.5 Installed.";
+            clear;
             show_menu;
         ;;
         2) clear;
             option_picked "Option 2 Picked";
-            /etc/config-tools/config_runtime runtime-version=0
+            /etc/config-tools/config_runtime runtime-version=0;
             printf "Stopping Runtime";
             show_menu;
         ;;
         3) clear;
             option_picked "Option 3 Picked";
-            reboot now
+            reboot now;
             printf "PLC will restart";
             show_menu;
         ;;
