@@ -64,8 +64,4 @@ while [ $opt != '' ]
         ;;
       esac
     fi
-<<<<<<< HEAD
-done
-=======
-done            
->>>>>>> fba3d42446b38928c6c06994991f4480e790cb3f
+done    
