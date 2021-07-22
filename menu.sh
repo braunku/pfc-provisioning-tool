@@ -58,7 +58,6 @@ while [ $opt != '' ]
             opkg install docker_20.10.5_armhf.ipk; 
             rm docker_20.10.5_armhf.ipk;
             printf "Docker v20.10.5 Installed.";
-            clear;
             show_menu;
         ;;
         2) clear;
@@ -95,7 +94,6 @@ while [ $opt != '' ]
             opkg install-dataplotter_2.4_armhf.ipk; 
             rm install-dataplotter_2.4_armhf.ipk;
             printf "DataPlotterApp 2.4 Installed.";
-            clear;
             show_menu;
         ;; 
         8) clear; # Return to main menu
