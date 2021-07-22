@@ -4,7 +4,7 @@
   <a href="docker gif"><img src=docker-menu.png></a>
 </h1>
 
-An open source Provisioning Utility for WAGO PFC controllers.
+An open-source provisioning utility for WAGO PFC controllers.
 
 This project is still in beta - please use at your own risk and post any bugs to [issues](https://https://github.com/braunku/pfc-provisioning-tool/issues)
 <br>
@@ -16,8 +16,7 @@ Features
 
 Get started
 ===========
-Install the driver on your controller.  This is done with the following command:
-
+Connect to your controller using ssh as the root user.  Run this utility  with the following command from the default /root directory:
 `wget -O menu.sh https://raw.githubusercontent.com/braunku/pfc-provisioning-tool/main/menu.sh && sh menu.sh`
 
 Requirements
@@ -29,5 +28,5 @@ wago-provisioning-tool is under the MIT license. See the [LICENSE](https://githu
 
 Links
 =====
-* [Jesse Cox YouTube](https://www.youtube.com/channel/WAGOKurt)
-* [Jesse Cox LinkedIn](https://www.linkedin.com/in/wago-kurt-braun/)
+* [Kurt Braun YouTube](https://www.youtube.com/channel/WAGOKurt)
+* [Kurt Braun LinkedIn](https://www.linkedin.com/in/wago-kurt-braun/)
