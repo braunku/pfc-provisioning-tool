@@ -91,7 +91,7 @@ while [ $opt != '' ]
         6) clear;
             option_picked "Option 6 Picked - Install DataPlotterApp";
             wget https://github.com/braunku/pfc-provisioning-tool/raw/main/install-dataplotter_2.4_armhf.ipk;
-            opkg install-dataplotter_2.4_armhf.ipk; 
+            opkg install install-dataplotter_2.4_armhf.ipk; 
             rm install-dataplotter_2.4_armhf.ipk;
             printf "DataPlotterApp 2.4 Installed.";
             show_menu;
