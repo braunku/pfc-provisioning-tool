@@ -9,7 +9,7 @@ show_menu(){
     printf "${menu} ${number} 1)${menu} Install Docker ${normal}\n"
     printf "${menu} ${number} 2)${menu} Disable PLC Runtime ${normal}\n"
     printf "${menu} ${number} 3)${menu} Disable OPC-UA & IO-Check Services${normal}\n"
-    printf "${menu} ${number} 4)${menu} Install KBUS Daemon ${normal}\n"
+    printf "${menu} ${number} 4)${menu} Install KBUS MQTT Daemon ${normal}\n"
     printf "${menu} ${number} 5)${menu} Install Containers ${normal}\n"
 
     printf "${menu} ${number} 9)${menu} Restart PLC ${normal}\n"
