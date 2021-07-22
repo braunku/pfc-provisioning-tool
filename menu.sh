@@ -11,6 +11,7 @@ show_menu(){
     printf "${menu} ${number} 3)${menu} Disable OPC-UA & IO-Check Services${normal}\n"
     printf "${menu} ${number} 4)${menu} Install KBUS MQTT Daemon ${normal}\n"
     printf "${menu} ${number} 5)${menu} Install Containers ${normal}\n"
+    printf "${menu} ${number} 6)${menu} Install DataPlotterApp 2.4 ${normal}\n"
 
     printf "${menu} ${number} 9)${menu} Restart PLC ${normal}\n"
     printf "${menu}*********************************************${normal}\n"
@@ -83,12 +84,19 @@ while [ $opt != '' ]
             printf "KBUS Daemon Installed";
             show_menu;
         ;;
-
         5) clear; # Docker sub-menu
             option_picked "Option 5 Picked - Install Containers";
             printf "Select Container";
             show_container_menu;
         ;;
+        6) clear;
+            option_picked "Option 6 Picked - Install DataPlotterApp";
+            wget https://raw.githubusercontent.com/braunku/pfc-provisioning-tool/main/install-dataplotter_2.4_armhf.ipk;
+            opkg install-dataplotter_2.4_armhf.ipk; 
+            rm install-dataplotter_2.4_armhf.ipk;
+            printf "DataPlotterApp 2.4 Installed.";
+            clear;
+            show_menu;
         8) clear; # Return to main menu
             show_menu;
         ;;
@@ -98,7 +106,6 @@ while [ $opt != '' ]
             printf "PLC will restart";
             show_menu;
         ;;
-
         a) clear;
             option_picked "Option a Picked - Install Node-RED";
             docker volume create --name node_red_user_data;
@@ -106,21 +113,18 @@ while [ $opt != '' ]
             printf "Node-RED Installed";
             show_container_menu;
         ;;
-
         b) clear;
             option_picked "Option b Picked - Install Mosquitto Broker";
             docker run -d --network=host --restart unless-stopped eclipse-mosquitto;
             printf "Mosquitto Broker Installed";
             show_container_menu;
         ;;
-
         c) clear;
             option_picked "Option c Picked - Install KBUS Modbus Coupler";
             docker run -d --init --restart unless-stopped --privileged -p 502:502 --name=pfc-modbus-slave -v /var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket wagoautomation/pfc-modbus-slave;
             printf "KBUS Modbus Coupler Installed";
             show_container_menu;
         ;;
-
         d) clear;
             option_picked "Option d Picked - Install Grafana";
             docker volume create grafana-storage;
@@ -128,7 +132,6 @@ while [ $opt != '' ]
             printf "Grafana Installed";
             show_container_menu;
         ;;
-
         e) clear;
             option_picked "Option e Picked - Install InfluxDB";
             docker volume create influx-storage;
@@ -136,7 +139,6 @@ while [ $opt != '' ]
             printf "InfluxDB Installed";
             show_container_menu;
         ;;
-
         x) clear;
             chmod +x menu.sh;
             printf "Type ./menu.sh to re-open this tool";
