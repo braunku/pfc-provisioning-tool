@@ -97,6 +97,7 @@ while [ $opt != '' ]
             printf "DataPlotterApp 2.4 Installed.";
             clear;
             show_menu;
+        ;; 
         8) clear; # Return to main menu
             show_menu;
         ;;
