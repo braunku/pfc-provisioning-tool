@@ -93,7 +93,7 @@ while [ $opt != '' ]
             wget https://github.com/braunku/pfc-provisioning-tool/raw/main/install-dataplotter_2.4_armhf.ipk;
             opkg install install-dataplotter_2.4_armhf.ipk; 
             rm install-dataplotter_2.4_armhf.ipk;
-            printf "DataPlotterApp 2.4 Installed.";
+            printf "DataPlotterApp 2.4 Installed.  Accessible at http://<pfc-ip-address>/dataplotter/dataplotter.html";
             show_menu;
         ;; 
         8) clear; # Return to main menu
