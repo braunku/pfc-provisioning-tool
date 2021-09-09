@@ -120,7 +120,7 @@ while [ $opt != '' ]
         ;;
         c) clear;
             option_picked "Option c Picked - Install KBUS Modbus Coupler";
-            docker run -d --init --restart unless-stopped --privileged -p 502:502 --name=pfc-modbus-slave -v /var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket wagoautomation/pfc-modbus-slave;
+            docker run -d --init --restart unless-stopped --privileged -p 502:502 --name=pfc-modbus-server -v /var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket wagoautomation/pfc-modbus-server; 
             printf "KBUS Modbus Coupler Installed";
             show_container_menu;
         ;;
