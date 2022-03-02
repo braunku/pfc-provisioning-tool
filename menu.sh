@@ -113,9 +113,9 @@ while [ $opt != '' ]
             show_container_menu;
         ;;
         b) clear;
-            option_picked "Option b Picked - Install Mosquitto Broker";
-            docker run -d --network=host --restart unless-stopped eclipse-mosquitto;
-            printf "Mosquitto Broker Installed";
+            option_picked "Option b Picked - Install Mosquitto Broker 1.5";
+            docker run -d --restart unless-stopped --name mosquitto --network=host eclipse-mosquitto:1.5;
+            printf "Mosquitto Broker v1.5 Installed";
             show_container_menu;
         ;;
         c) clear;
