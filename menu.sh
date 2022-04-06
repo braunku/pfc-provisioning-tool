@@ -139,7 +139,7 @@ while [ $opt != '' ]
             show_container_menu;
         ;;        
         f) clear;
-            option_picked "Option f Picked - Install KBUS Daemon Container;
+            option_picked "Option f Picked - Install KBUS Daemon Container";
             docker run -d --init --restart unless-stopped --privileged --network=host --name=kbus -v kbusapidata:/etc/kbus-api -v /var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket jessejamescox/pfc-kbus-api;
             printf "KBUS Daemon Installed";
             show_container_menu;
