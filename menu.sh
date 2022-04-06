@@ -137,7 +137,13 @@ while [ $opt != '' ]
             docker run -d --restart unless-stopped --name=influxdb --network=host -v influx-storage:/etc/influxdb/ influxdb
             printf "InfluxDB Installed";
             show_container_menu;
-        ;;
+        ;;        
+        f) clear;
+            option_picked "Option f Picked - Install KBUS Daemon Container;
+            docker run -d --init --restart unless-stopped --privileged --network=host -v kbusapidata:/etc/kbus-api -v /var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket jessejamescox/pfc-kbus-api
+            printf "KBUS Daemon Installed";
+            show_container_menu;
+        ;;        
         x) clear;
             chmod +x menu.sh;
             printf "Type ./menu.sh to re-open this tool";
