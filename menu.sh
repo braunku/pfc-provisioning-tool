@@ -38,6 +38,7 @@ show_container_menu(){
     printf "${menu} ${number} c)${menu} Install KBUS Modbus ${normal}\n"
     printf "${menu} ${number} d)${menu} Install Grafana ${normal}\n"
     printf "${menu} ${number} e)${menu} Install InfluxDB ${normal}\n"
+    printf "${menu} ${number} f)${menu} Install KBUX Daemon Container Beta ${normal}\n"
     printf "${menu} ${number} 8)${menu} Main Menu ${normal}\n"
     printf "${menu}*********************************************${normal}\n"
     printf "Please enter a menu option and enter or ${fgred}x to exit. ${normal}"
@@ -140,7 +141,7 @@ while [ $opt != '' ]
         ;;        
         f) clear;
             option_picked "Option f Picked - Install KBUS Daemon Container;
-            docker run -d --init --restart unless-stopped --privileged --network=host -v kbusapidata:/etc/kbus-api -v /var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket jessejamescox/pfc-kbus-api
+            docker run -d --init --restart unless-stopped --privileged --network=host --name=kbus -v kbusapidata:/etc/kbus-api -v /var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket jessejamescox/pfc-kbus-api
             printf "KBUS Daemon Installed";
             show_container_menu;
         ;;        
