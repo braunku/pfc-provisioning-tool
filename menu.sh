@@ -12,7 +12,6 @@ show_menu(){
     printf "${menu} ${number} 4)${menu} Install KBUS MQTT Daemon ${normal}\n"
     printf "${menu} ${number} 5)${menu} Install Containers ${normal}\n"
     printf "${menu} ${number} 6)${menu} Install DataPlotterApp 2.4 ${normal}\n"
-
     printf "${menu} ${number} 9)${menu} Restart PLC ${normal}\n"
     printf "${menu}*********************************************${normal}\n"
     printf "Please enter a menu option and enter or ${fgred}x to exit. ${normal}"
@@ -135,13 +134,13 @@ while [ $opt != '' ]
         e) clear;
             option_picked "Option e Picked - Install InfluxDB";
             docker volume create influx-storage;
-            docker run -d --restart unless-stopped --name=influxdb --network=host -v influx-storage:/etc/influxdb/ influxdb
+            docker run -d --restart unless-stopped --name=influxdb --network=host -v influx-storage:/etc/influxdb/ influxdb;
             printf "InfluxDB Installed";
             show_container_menu;
         ;;        
         f) clear;
             option_picked "Option f Picked - Install KBUS Daemon Container;
-            docker run -d --init --restart unless-stopped --privileged --network=host --name=kbus -v kbusapidata:/etc/kbus-api -v /var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket jessejamescox/pfc-kbus-api
+            docker run -d --init --restart unless-stopped --privileged --network=host --name=kbus -v kbusapidata:/etc/kbus-api -v /var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket jessejamescox/pfc-kbus-api;
             printf "KBUS Daemon Installed";
             show_container_menu;
         ;;        
