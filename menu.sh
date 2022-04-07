@@ -37,7 +37,7 @@ show_container_menu(){
     printf "${menu} ${number} c)${menu} Install KBUS Modbus ${normal}\n"
     printf "${menu} ${number} d)${menu} Install Grafana ${normal}\n"
     printf "${menu} ${number} e)${menu} Install InfluxDB ${normal}\n"
-    printf "${menu} ${number} f)${menu} Install KBUX Daemon Container ${normal}\n"
+    printf "${menu} ${number} f)${menu} Install KBUS Daemon Container ${normal}\n"
     printf "${menu} ${number} 8)${menu} Main Menu ${normal}\n"
     printf "${menu}*********************************************${normal}\n"
     printf "Please enter a menu option and enter or ${fgred}x to exit. ${normal}"
