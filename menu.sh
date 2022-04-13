@@ -38,6 +38,7 @@ show_container_menu(){
     printf "${menu} ${number} d)${menu} Install Grafana ${normal}\n"
     printf "${menu} ${number} e)${menu} Install InfluxDB ${normal}\n"
     printf "${menu} ${number} f)${menu} Install KBUS Daemon Container ${normal}\n"
+    printf "${menu} ${number} g)${menu} Install CC100 Beta NR Container ${normal}\n"
     printf "${menu} ${number} 8)${menu} Main Menu ${normal}\n"
     printf "${menu}*********************************************${normal}\n"
     printf "Please enter a menu option and enter or ${fgred}x to exit. ${normal}"
@@ -137,11 +138,17 @@ while [ $opt != '' ]
             docker run -d --restart unless-stopped --name=influxdb --network=host -v influx-storage:/etc/influxdb/ influxdb;
             printf "InfluxDB Installed";
             show_container_menu;
-        ;;        
+        ;;
         f) clear;
             option_picked "Option f Picked - Install KBUS Daemon Container";
             docker run -d --init --restart unless-stopped --privileged --network=host --name=kbus -v kbusapidata:/etc/kbus-api -v /var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket jessejamescox/pfc-kbus-api;
             printf "KBUS Daemon Installed";
+            show_container_menu;
+        ;;  
+        g) clear;
+            option_picked "Option f Picked - Install CC100 Beta NR Container";
+            docker run -d --name node-red -d --privileged=true --user=root -p 1880:1880 -v node_red_user_data:/data -v /sys:/home/sys:rw wagoautomation/node-red-cc100:0.0.5;
+            printf "CC100 NR Container Installed";
             show_container_menu;
         ;;        
         x) clear;
