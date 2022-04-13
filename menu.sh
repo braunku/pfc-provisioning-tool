@@ -32,7 +32,7 @@ show_container_menu(){
     bgred=`echo "\033[41m"`
     fgred=`echo "\033[31m"`
     printf "\n${menu}********* Docker Containers ***********${normal}\n"
-    printf "${menu} ${number} a)${menu} Install Node-RED ${normal}\n"
+    printf "${menu} ${number} a)${menu} Install Node-RED latest${normal}\n"
     printf "${menu} ${number} b)${menu} Install Mosquitto ${normal}\n"
     printf "${menu} ${number} c)${menu} Install KBUS Modbus ${normal}\n"
     printf "${menu} ${number} d)${menu} Install Grafana ${normal}\n"
