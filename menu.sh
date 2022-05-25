@@ -10,8 +10,9 @@ show_menu(){
     printf "${menu} ${number} 2)${menu} Disable PLC Runtime ${normal}\n"
     printf "${menu} ${number} 3)${menu} Disable OPC-UA & IO-Check Services${normal}\n"
     printf "${menu} ${number} 4)${menu} Install KBUS MQTT Daemon ${normal}\n"
-    printf "${menu} ${number} 5)${menu} Install Containers ${normal}\n"
-    printf "${menu} ${number} 6)${menu} Install DataPlotterApp 2.4 ${normal}\n"
+    printf "${menu} ${number} 5)${menu} Install PFC200 Containers ${normal}\n"
+    printf "${menu} ${number} 6)${menu} Install CC100 Containers ${normal}\n"
+    printf "${menu} ${number} 7)${menu} Install DataPlotterApp 2.4 ${normal}\n"
     printf "${menu} ${number} 9)${menu} Restart PLC ${normal}\n"
     printf "${menu}*********************************************${normal}\n"
     printf "Please enter a menu option and enter or ${fgred}x to exit. ${normal}"
@@ -25,7 +26,7 @@ option_picked(){
     printf "${msgcolor}${message}${normal}\n"
 }
 
-show_container_menu(){
+show_pfc200_container_menu(){
     normal=`echo "\033[m"`
     menu=`echo "\033[36m"` #blue
     number=`echo "\033[33m"` #yellow
@@ -38,13 +39,25 @@ show_container_menu(){
     printf "${menu} ${number} d)${menu} Install Grafana ${normal}\n"
     printf "${menu} ${number} e)${menu} Install InfluxDB ${normal}\n"
     printf "${menu} ${number} f)${menu} Install KBUS Daemon Container ${normal}\n"
-    printf "${menu} ${number} g)${menu} Install CC100 Beta NR Container ${normal}\n"
     printf "${menu} ${number} 8)${menu} Main Menu ${normal}\n"
     printf "${menu}*********************************************${normal}\n"
     printf "Please enter a menu option and enter or ${fgred}x to exit. ${normal}"
     read opt
 }
-
+show_cc100_container_menu(){
+    normal=`echo "\033[m"`
+    menu=`echo "\033[36m"` #blue
+    number=`echo "\033[33m"` #yellow
+    bgred=`echo "\033[41m"`
+    fgred=`echo "\033[31m"`
+    printf "\n${menu}********* Docker Containers ***********${normal}\n"
+    printf "${menu} ${number} p)${menu} Install Node-RED latest for CC100${normal}\n"
+    printf "${menu} ${number} r)${menu} Install InfluxDB ${normal}\n"
+    printf "${menu} ${number} 8)${menu} Main Menu ${normal}\n"
+    printf "${menu}*********************************************${normal}\n"
+    printf "Please enter a menu option and enter or ${fgred}x to exit. ${normal}"
+    read opt
+}
 clear
 show_menu
 while [ $opt != '' ]
@@ -85,11 +98,16 @@ while [ $opt != '' ]
             show_menu;
         ;;
         5) clear; # Docker sub-menu
-            option_picked "Option 5 Picked - Install Containers";
+            option_picked "Option 5 Picked - Install PFC200 Containers";
             printf "Select Container";
-            show_container_menu;
+            show_pfc200_container_menu;
         ;;
-        6) clear;
+        6) clear; # Docker sub-menu
+            option_picked "Option 5 Picked - Install CC100 Containers";
+            printf "Select Container";
+            show_cc100_container_menu;
+        ;;
+        7) clear;
             option_picked "Option 6 Picked - Install DataPlotterApp";
             wget https://github.com/braunku/pfc-provisioning-tool/raw/main/install-dataplotter_2.4_armhf.ipk;
             opkg install install-dataplotter_2.4_armhf.ipk; 
@@ -111,46 +129,51 @@ while [ $opt != '' ]
             docker volume create --name node_red_user_data;
             docker run --restart unless-stopped -d --name node-red --network=host -v node_red_user_data:/data nodered/node-red:latest-minimal;
             printf "Node-RED Installed";
-            show_container_menu;
+            show_pfc200_container_menu;
         ;;
         b) clear;
             option_picked "Option b Picked - Install Mosquitto Broker 1.5";
             docker run -d --restart unless-stopped --name mosquitto --network=host eclipse-mosquitto:1.5;
             printf "Mosquitto Broker v1.5 Installed";
-            show_container_menu;
+            show_pfc200_container_menu;
         ;;
         c) clear;
             option_picked "Option c Picked - Install KBUS Modbus Coupler";
             docker run -d --init --restart unless-stopped --privileged -p 502:502 --name=pfc-modbus-server -v /var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket wagoautomation/pfc-modbus-server; 
             printf "KBUS Modbus Coupler Installed";
-            show_container_menu;
+            show_pfc200_container_menu;
         ;;
         d) clear;
             option_picked "Option d Picked - Install Grafana";
             docker volume create grafana-storage;
             docker run -d --restart unless-stopped --network=host --name=grafana -v grafana-storage:/var/lib/grafana grafana/grafana;
             printf "Grafana Installed";
-            show_container_menu;
+            show_pfc200_container_menu;
         ;;
         e) clear;
             option_picked "Option e Picked - Install InfluxDB";
-            docker volume create influx-storage;
-            docker run -d --restart unless-stopped --name=influxdb --network=host -v influx-storage:/etc/influxdb/ influxdb;
+            docker run -d --restart unless-stopped --name=influxdb --network=host -v influx-storage:/etc/influxdb/ arm32v7/influxdb;
             printf "InfluxDB Installed";
-            show_container_menu;
+            show_pfc200_container_menu;
         ;;
         f) clear;
             option_picked "Option f Picked - Install KBUS Daemon Container";
             docker run -d --init --restart unless-stopped --privileged --network=host --name=kbus -v kbusapidata:/etc/kbus-api -v /var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket jessejamescox/pfc-kbus-api;
             printf "KBUS Daemon Installed";
-            show_container_menu;
-        ;;  
-        g) clear;
-            option_picked "Option f Picked - Install CC100 Beta NR Container";
-            docker run -d --name node-red -d --privileged=true --user=root -p 1880:1880 -v node_red_user_data:/data -v /sys:/home/sys:rw wagoautomation/node-red-cc100:0.0.5;
-            printf "CC100 NR Container Installed";
-            show_container_menu;
-        ;;        
+            show_pfc200_container_menu;
+        ;;
+        p) clear;
+            option_picked "Option a Picked - Install CC100 Node-RED";
+            docker run -d --name wago-node-red -d --privileged=true --user=root-p 1880:1880 -v node_red_user_data:/data nodered/node-red;
+            printf "Node-RED CC100 Installed";
+            show_cc100_container_menu;
+        ;;
+        r) clear;
+            option_picked "Option e Picked - Install InfluxDB";
+            docker run -d --restart unless-stopped --name=influxdb --network=host -v influx-storage:/etc/influxdb/ arm32v7/influxdb;
+            printf "InfluxDB Installed";
+            show_cc100_container_menu;
+        ;;
         x) clear;
             chmod +x menu.sh;
             printf "Type ./menu.sh to re-open this tool";
