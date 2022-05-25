@@ -17,9 +17,13 @@ Features
 Get started
 ===========
 Connect to your controller using ssh as the root user.  Run this utility  with the following command from the default /root directory:
+
 For PFC200 FW18 & CC100
+
 `wget -O menu.sh https://raw.githubusercontent.com/braunku/pfc-provisioning-tool/main/menu.sh && sh menu.sh`
+
 For PFC200 FW19+ (wget issue)
+
 'curl -L https://raw.githubusercontent.com/braunku/pfc-provisioning-tool/main/menu.sh -o menu.sh -s'
 
 Requirements
