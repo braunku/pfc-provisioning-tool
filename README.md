@@ -17,12 +17,14 @@ Features
 Get started
 ===========
 Connect to your controller using ssh as the root user.  Run this utility  with the following command from the default /root directory:
-
+For FW18
 `wget -O menu.sh https://raw.githubusercontent.com/braunku/pfc-provisioning-tool/main/menu.sh && sh menu.sh`
+For FW19+
+'curl -L https://raw.githubusercontent.com/braunku/pfc-provisioning-tool/main/menu.sh -o menu.sh -s'
 
 Requirements
 ============
-* WAGO PFC200 with firmware >= 18
+* WAGO PFC200 with firmware 18+
 License
 =======
 wago-provisioning-tool is under the MIT license. See the [LICENSE](https://github.com/braunku/wago-provisioning-tool/blob/main/LICENSE.md) for more information.
