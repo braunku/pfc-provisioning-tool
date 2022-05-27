@@ -25,6 +25,8 @@ For PFC200 FW18 & CC100
 For PFC200 FW19+ (wget issue)
 
 `curl -L https://raw.githubusercontent.com/braunku/pfc-provisioning-tool/main/menu.sh -o menu.sh -s`
+then type;
+`sh menu.sh`
 
 Requirements
 ============
