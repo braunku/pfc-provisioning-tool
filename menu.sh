@@ -164,7 +164,7 @@ while [ $opt != '' ]
         ;;
         p) clear;
             option_picked "Option a Picked - Install CC100 Node-RED";
-            docker run -d --name wago-node-red -d --privileged=true --user=root -p 1880:1880 -v node_red_user_data:/data nodered/node-red;
+            docker run -d --restart unless-stopped --name wago-node-red -d --privileged=true --user=root -p 1880:1880 -v node_red_user_data:/data nodered/node-red;
             printf "Node-RED CC100 Installed";
             show_cc100_container_menu;
         ;;
