@@ -127,7 +127,7 @@ while [ $opt != '' ]
         a) clear;
             option_picked "Option a Picked - Install Node-RED";
             docker volume create --name node_red_user_data;
-            docker run --restart unless-stopped -d --name node-red --network=host --security-opt seccomp:unconfined -v node_red_user_data:/data nodered/node-red:latest-minimal;
+            docker run --restart unless-stopped -d --name node-red --network=host --security-opt seccomp:unconfined -v node_red_user_data:/data nodered/node-red:latest;
             printf "Node-RED Installed";
             show_pfc200_container_menu;
         ;;
