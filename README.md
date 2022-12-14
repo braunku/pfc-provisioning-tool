@@ -31,7 +31,7 @@ To re-open the tool just type;
 Requirements
 ============
 * WAGO PFC200 with firmware 18+
-* Device has correct timezone, date and time set in the WBM.
+* Device has correct timezone, date and time set in the WBM.  Type `date` in the command line to verify.
 * Internet configured correctly (IP, Gateway and DNS correctly set)
   Check that you can ping www.google.com from the command line to verify this.
 
