@@ -19,6 +19,8 @@ Get started
 Connect to your controller using ssh as the root user.  Run this utility  with the following command from the default /root directory:
 
 `curl -L https://raw.githubusercontent.com/braunku/pfc-provisioning-tool/main/menu.sh -o menu.sh -s && sh menu.sh`
+Depending on the device Firmware, this command might not work.  In this case, please use the following command;
+wget -O menu.sh https://raw.githubusercontent.com/braunku/pfc-provisioning-tool/main/menu.sh && sh menu.sh
 
 To re-open the tool just type;
 
