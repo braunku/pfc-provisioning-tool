@@ -31,6 +31,10 @@ To re-open the tool just type;
 Requirements
 ============
 * WAGO PFC200 with firmware 18+
+* Device has correct timezone, date and time set in the WBM.
+* Internet configured correctly (IP, Gateway and DNS correctly set)
+  Check that you can ping www.google.com from the command line to verify this.
+
 License
 =======
 wago-provisioning-tool is under the MIT license. See the [LICENSE](https://github.com/braunku/wago-provisioning-tool/blob/main/LICENSE.md) for more information.
