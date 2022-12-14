@@ -22,7 +22,7 @@ Connect to your controller using ssh as the root user.  Run this utility  with t
 
 Depending on the device Firmware, this command might not work.  In this case, please use the following command;
 
-wget -O menu.sh https://raw.githubusercontent.com/braunku/pfc-provisioning-tool/main/menu.sh && sh menu.sh
+`wget -O menu.sh https://raw.githubusercontent.com/braunku/pfc-provisioning-tool/main/menu.sh && sh menu.sh`
 
 To re-open the tool just type;
 
