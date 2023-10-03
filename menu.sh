@@ -82,8 +82,8 @@ while [ $opt != '' ]
         ;;
         3) clear;
             option_picked "Option 3 Picked - Disable OPC-UA & IO Check Services";
-            /etc/config-tools/config-opcua --set=\"state\":\"disable\";
-            /etc/config-tools/config-opcua -r 
+            /etc/config-tools/config_opcua --set=\"state\":\"disable\";
+            /etc/config-tools/config_opcua -r 
             printf "OPC-UA Disabled";
             /etc/config-tools/config_iocheckport state="disabled";
             printf "IO Check Disabled";
