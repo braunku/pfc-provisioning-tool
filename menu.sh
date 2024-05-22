@@ -165,7 +165,7 @@ while [ $opt != '' ]
         ;;
         p) clear;
             option_picked "Option p Picked - Install CC100 Node-RED";
-            docker run -d --restart unless-stopped --name wago-node-red -d --privileged=true --security-opt seccomp:unconfined --user=root --network=host -v node_red_user_data:/data nodered/node-red:latest-minimal;
+            docker run -d --restart unless-stopped --name wago-node-red --privileged=true --security-opt seccomp:unconfined --user=root --network=host -v node_red_user_data:/data nodered/node-red:latest-minimal;
             printf "Node-RED CC100 Installed";
             show_cc100_container_menu;
         ;;
@@ -176,10 +176,10 @@ while [ $opt != '' ]
             show_cc100_container_menu;
         ;;
         s) clear;
-            option_picked "Option s Picked - Install Mosquitto 2.0.18";
+            option_picked "Option s Picked - Install Mosquitto 2.0";
             wget https://github.com/braunku/pfc-provisioning-tool/raw/main/mosquitto.conf;
-            docker run -d -p 1883:1883 -p 9001:9001 -v $(pwd)/mosquitto.conf:/mosquitto/config/mosquitto.conf eclipse-mosquitto:2.0.18
-            printf "Mosquitto 2.0.18 Installed";
+            docker run -d --restart unless-stopped --name mosquitto -p 1883:1883 -p 9001:9001 -v $(pwd)/mosquitto.conf:/mosquitto/config/mosquitto.conf eclipse-mosquitto
+            printf "Mosquitto 2.0 Installed";
             show_cc100_container_menu;
         ;;        
         x) clear;
