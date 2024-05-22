@@ -178,7 +178,7 @@ while [ $opt != '' ]
         s) clear;
             option_picked "Option s Picked - Install Mosquitto 2.0";
             wget https://github.com/braunku/pfc-provisioning-tool/raw/main/mosquitto.conf;
-            docker run -d --restart unless-stopped --name mosquitto -p 1883:1883 -p 9001:9001 -v $(pwd)/mosquitto.conf:/mosquitto/config/mosquitto.conf eclipse-mosquitto
+            docker run -d --restart unless-stopped --name mosquitto2 -p 1883:1883 -p 8883:8883 -p 9001:9001 -v $(pwd)/mosquitto.conf:/mosquitto/config/mosquitto.conf eclipse-mosquitto:latest
             printf "Mosquitto 2.0 Installed";
             show_cc100_container_menu;
         ;;        
