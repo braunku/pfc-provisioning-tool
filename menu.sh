@@ -53,6 +53,7 @@ show_cc100_container_menu(){
     printf "\n${menu}********* Docker Containers ***********${normal}\n"
     printf "${menu} ${number} p)${menu} Install Node-RED latest for CC100${normal}\n"
     printf "${menu} ${number} r)${menu} Install InfluxDB ${normal}\n"
+    printf "${menu} ${number} s)${menu} Install Mosquitto 2.2 ${normal}\n"
     printf "${menu} ${number} 8)${menu} Main Menu ${normal}\n"
     printf "${menu}*********************************************${normal}\n"
     printf "Please enter a menu option and enter or ${fgred}x to exit. ${normal}"
@@ -134,7 +135,7 @@ while [ $opt != '' ]
         b) clear;
             option_picked "Option b Picked - Install Mosquitto Broker 1.5";
             docker run -d --restart unless-stopped --name mosquitto --network=host eclipse-mosquitto:1.5;
-            printf "Mosquitto Broker v1.5 Installed";
+            printf "Mosquitto Broker 1.5 Installed";
             show_pfc200_container_menu;
         ;;
         c) clear;
@@ -163,17 +164,24 @@ while [ $opt != '' ]
             show_pfc200_container_menu;
         ;;
         p) clear;
-            option_picked "Option a Picked - Install CC100 Node-RED";
+            option_picked "Option p Picked - Install CC100 Node-RED";
             docker run -d --restart unless-stopped --name wago-node-red -d --privileged=true --security-opt seccomp:unconfined --user=root --network=host -v node_red_user_data:/data nodered/node-red:latest-minimal;
             printf "Node-RED CC100 Installed";
             show_cc100_container_menu;
         ;;
         r) clear;
-            option_picked "Option e Picked - Install InfluxDB";
+            option_picked "Option r Picked - Install InfluxDB";
             docker run -d --restart unless-stopped --name=influxdb --network=host -v influx-storage:/etc/influxdb/ arm32v7/influxdb;
             printf "InfluxDB Installed";
             show_cc100_container_menu;
         ;;
+        s) clear;
+            option_picked "Option s Picked - Install Mosquitto 2.0.18";
+            wget https://github.com/braunku/pfc-provisioning-tool/raw/main/mosquitto.conf;
+            docker run -d -p 1883:1883 -p 9001:9001 -v $(pwd)/mosquitto.conf:/mosquitto/config/mosquitto.conf eclipse-mosquitto:2.0.18
+            printf "Mosquitto 2.0.18 Installed";
+            show_cc100_container_menu;
+        ;;        
         x) clear;
             chmod +x menu.sh;
             printf "Type ./menu.sh to re-open this tool";
