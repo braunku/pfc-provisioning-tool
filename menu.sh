@@ -53,7 +53,7 @@ show_cc100_container_menu(){
     printf "\n${menu}********* Docker Containers ***********${normal}\n"
     printf "${menu} ${number} p)${menu} Install Node-RED latest for CC100${normal}\n"
     printf "${menu} ${number} r)${menu} Install InfluxDB ${normal}\n"
-    printf "${menu} ${number} s)${menu} Install Mosquitto 2.2 ${normal}\n"
+    printf "${menu} ${number} s)${menu} Install Mosquitto 2.0 ${normal}\n"
     printf "${menu} ${number} 8)${menu} Main Menu ${normal}\n"
     printf "${menu}*********************************************${normal}\n"
     printf "Please enter a menu option and enter or ${fgred}x to exit. ${normal}"
