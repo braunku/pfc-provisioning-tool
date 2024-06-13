@@ -170,7 +170,7 @@ while [ $opt != '' ]
             cd dockerbuild-python;
             wget https://github.com/braunku/pfc-provisioning-tool/raw/main/Dockerfile;
             wget https://github.com/braunku/pfc-provisioning-tool/raw/main/mbtest.py;
-            docker build -t "python3-pymodbus:1.0" . Dockerfile;
+            docker build -t "python3-pymodbus:1.0" .;
             docker run -d --network=host python3-pymodbus:1.0;
             printf "Python3 PyModbus Installed";
             show_pfc200_container_menu;
