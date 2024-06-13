@@ -39,6 +39,7 @@ show_pfc200_container_menu(){
     printf "${menu} ${number} d)${menu} Install Grafana ${normal}\n"
     printf "${menu} ${number} e)${menu} Install InfluxDB ${normal}\n"
     printf "${menu} ${number} f)${menu} Install KBUS Daemon Container ${normal}\n"
+    printf "${menu} ${number} g)${menu} Install Python3 PyModbus Container ${normal}\n"
     printf "${menu} ${number} 8)${menu} Main Menu ${normal}\n"
     printf "${menu}*********************************************${normal}\n"
     printf "Please enter a menu option and enter or ${fgred}x to exit. ${normal}"
@@ -161,6 +162,17 @@ while [ $opt != '' ]
             option_picked "Option f Picked - Install KBUS Daemon Container";
             docker run -d --init --restart unless-stopped --privileged --network=host --name=kbus -v kbusapidata:/etc/kbus-api -v /var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket jessejamescox/pfc-kbus-api;
             printf "KBUS Daemon Installed";
+            show_pfc200_container_menu;
+        ;;
+        g) clear;
+            option_picked "Option g Picked - Install Python3 PyModbus Container";
+            mkdir dockerbuild-python;
+            wget cd dockerbuild-python;
+            https://github.com/braunku/pfc-provisioning-tool/raw/main/Dockerfile;
+            wget https://github.com/braunku/pfc-provisioning-tool/raw/main/mbtest.py;
+            docker build -t "python3-pymodbus:1.0" .;
+            docker run -it --network=host python3-pymodbus:1.0;
+            printf "Python3 PyModbus Installed";
             show_pfc200_container_menu;
         ;;
         p) clear;
