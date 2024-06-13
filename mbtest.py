@@ -1,5 +1,5 @@
 from pymodbus.client import ModbusTcpClient
-client = ModbusTcpClient('127.0.0.1') # localhost or Remote IO IP Address
+client = ModbusTcpClient('127.0.0.1') # localhost or Remote IO IP Address 
 client.connect()
 try:
     while True:
