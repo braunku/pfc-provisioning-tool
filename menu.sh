@@ -69,7 +69,8 @@ show_pfc200_fw_menu(){
     bgred=`echo "\033[41m"`
     fgred=`echo "\033[31m"`
     printf "\n${menu}********* PFC200 Firwmare Update ***********${normal}\n"
-    printf "\n${menu}Please put PLC Run switch to stop before proceeding.  Update takes 15-20min. ${normal}\n"
+    printf "\n${menu}Please put PLC Run switch to stop before proceeding. ${normal}\n"
+    printf "\n${menu}Update takes 15-20min. ${normal}\n"
     printf "${menu} ${number} u)${menu} FW26 ${normal}\n"
     printf "${menu} ${number} v)${menu} FW27 ${normal}\n"
     printf "${menu} ${number} z)${menu} Main Menu ${normal}\n"
