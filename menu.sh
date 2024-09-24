@@ -13,6 +13,7 @@ show_menu(){
     printf "${menu} ${number} 5)${menu} Install PFC200 Containers ${normal}\n"
     printf "${menu} ${number} 6)${menu} Install CC100 Containers ${normal}\n"
     printf "${menu} ${number} 7)${menu} Install DataPlotterApp 2.4 ${normal}\n"
+    printf "${menu} ${number} 8)${menu} PFC200 FW Updates${normal}\n"
     printf "${menu} ${number} 9)${menu} Restart PLC ${normal}\n"
     printf "${menu}*********************************************${normal}\n"
     printf "Please enter a menu option and enter or ${fgred}x to exit. ${normal}"
@@ -40,7 +41,7 @@ show_pfc200_container_menu(){
     printf "${menu} ${number} e)${menu} Install InfluxDB ${normal}\n"
     printf "${menu} ${number} f)${menu} Install KBUS Daemon Container ${normal}\n"
     printf "${menu} ${number} g)${menu} Install Python3 PyModbus Container. ${normal}\n"
-    printf "${menu} ${number} 8)${menu} Main Menu ${normal}\n"
+    printf "${menu} ${number} z)${menu} Main Menu ${normal}\n"
     printf "${menu}*********************************************${normal}\n"
     printf "Please enter a menu option and enter or ${fgred}x to exit. ${normal}"
     read opt
@@ -55,7 +56,23 @@ show_cc100_container_menu(){
     printf "${menu} ${number} p)${menu} Install Node-RED latest for CC100${normal}\n"
     printf "${menu} ${number} r)${menu} Install InfluxDB ${normal}\n"
     printf "${menu} ${number} s)${menu} Install Mosquitto 2.0 ${normal}\n"
-    printf "${menu} ${number} 8)${menu} Main Menu ${normal}\n"
+    printf "${menu} ${number} z)${menu} Main Menu ${normal}\n"
+    printf "${menu}*********************************************${normal}\n"
+    printf "Please enter a menu option and enter or ${fgred}x to exit. ${normal}"
+    read opt
+}
+
+show_pfc200_fw_menu(){
+    normal=`echo "\033[m"`
+    menu=`echo "\033[36m"` #blue
+    number=`echo "\033[33m"` #yellow
+    bgred=`echo "\033[41m"`
+    fgred=`echo "\033[31m"`
+    printf "\n${menu}********* PFC200 Firwmare Update ***********${normal}\n"
+    printf "\n${menu}Please put PLC Run switch to stop before proceeding.  Update takes 15-20min. ${normal}\n"
+    printf "${menu} ${number} u)${menu} FW26 ${normal}\n"
+    printf "${menu} ${number} v)${menu} FW27 ${normal}\n"
+    printf "${menu} ${number} z)${menu} Main Menu ${normal}\n"
     printf "${menu}*********************************************${normal}\n"
     printf "Please enter a menu option and enter or ${fgred}x to exit. ${normal}"
     read opt
@@ -117,8 +134,11 @@ while [ $opt != '' ]
             printf "DataPlotterApp 2.4 Installed.  Accessible at http://<pfc-ip-address>/dataplotter/dataplotter.html";
             show_menu;
         ;; 
-        8) clear; # Return to main menu
+        8) clear; # FW Update
             show_menu;
+        ;;
+        z) clear; # Return to main menu
+            show_pfc200_fw_menu;
         ;;
         9) clear;
             option_picked "Option 9 Picked - Rebooting";
@@ -192,7 +212,23 @@ while [ $opt != '' ]
             docker run -d --restart unless-stopped --name mosquitto2 -p 1883:1883 -p 8883:8883 -p 9001:9001 -v $(pwd)/mosquitto.conf:/mosquitto/config/mosquitto.conf eclipse-mosquitto:latest
             printf "Mosquitto 2.0 Installed";
             show_cc100_container_menu;
-        ;;        
+        ;;   
+        u) clear;
+            option_picked "Option u Picked - Update PFC200 FW26";
+            read -sp "Enter password for the Docker container: " PASSWORD
+            echo
+            docker run -d --restart on-failure:1 --name=fw  --env PASSWORD="$PASSWORD" --env SERVICE_NAME=fw --env MAX_UPDATE_RETRYS=5 --env CERT_NAME=ca.crt --env FILEPATH=/etc/docker/ --env FILE=daemon.json wagoautomation/fw-update-pfc200:04.04.03-26
+            printf "Please wait 15 minutes";
+            show_cc100_container_menu;
+        ;;   
+        v) clear;
+            option_picked "Option u Picked - Update PFC200 FW27";
+            read -sp "Enter password for the Docker container: " PASSWORD
+            echo
+            docker run -d --restart on-failure:1 --name=fw  --env PASSWORD="$PASSWORD" --env SERVICE_NAME=fw --env MAX_UPDATE_RETRYS=5 --env CERT_NAME=ca.crt --env FILEPATH=/etc/docker/ --env FILE=daemon.json wagoron/fw-update-pfc:04.05.10-27
+            printf "Please wait 15 minutes";
+            show_cc100_container_menu;
+        ;;  
         x) clear;
             chmod +x menu.sh;
             printf "Type ./menu.sh to re-open this tool";
