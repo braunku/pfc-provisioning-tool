@@ -71,6 +71,7 @@ show_pfc200_fw_menu(){
     printf "\n${menu}********* PFC200 Firwmare Update ***********${normal}\n"
     printf "\n${menu}Please put PLC Run switch to stop before proceeding. ${normal}\n"
     printf "\n${menu}Update takes 15-20min. ${normal}\n"
+    printf "${menu} ${number} w)${menu} Remove all Docker images & containers (Warning!) ${normal}\n"
     printf "${menu} ${number} u)${menu} FW26 ${normal}\n"
     printf "${menu} ${number} v)${menu} FW27 ${normal}\n"
     printf "${menu} ${number} z)${menu} Main Menu ${normal}\n"
@@ -234,6 +235,11 @@ while [ $opt != '' ]
             printf "Please wait 20 minutes.  Leave PLC alone.";
             sleep 10;
             /etc/config-tools/fwupdate status;
+            exit;
+        ;;  
+        w) clear;
+            option_picked "Option w picked - Remove all docker images & containers";
+            docker stop $(docker ps -aq) && docker rm $(docker ps -aq) && docker rmi $(docker images -q);
             exit;
         ;;  
         x) clear;
