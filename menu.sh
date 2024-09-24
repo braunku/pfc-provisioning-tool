@@ -134,10 +134,10 @@ while [ $opt != '' ]
             printf "DataPlotterApp 2.4 Installed.  Accessible at http://<pfc-ip-address>/dataplotter/dataplotter.html";
             show_menu;
         ;; 
-        8) clear; # FW Update
+        z) clear; # FW Update
             show_menu;
         ;;
-        z) clear; # Return to main menu
+        8) clear; # Return to main menu
             show_pfc200_fw_menu;
         ;;
         9) clear;
