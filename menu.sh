@@ -221,8 +221,8 @@ while [ $opt != '' ]
             echo
             docker run -d --restart on-failure:1 --name=fw  --env PASSWORD="$PASSWORD" --env SERVICE_NAME=fw --env MAX_UPDATE_RETRYS=5 --env CERT_NAME=ca.crt --env FILEPATH=/etc/docker/ --env FILE=daemon.json wagoautomation/fw-update-pfc200:04.04.03-26
             printf "Please wait 20 minutes.  Leave PLC alone until $(date -d "20 minutes" +"%Y-%m-%d %H:%M:%S")\n";
-            sleep 10
-            /etc/config_tools/fwupdate status
+            sleep 10;
+            /etc/config_tools/fwupdate status;
             exit;
         ;;   
         v) clear;
@@ -232,8 +232,8 @@ while [ $opt != '' ]
             echo
             docker run -d --restart on-failure:1 --name=fw  --env PASSWORD="$PASSWORD" --env SERVICE_NAME=fw --env MAX_UPDATE_RETRYS=5 --env CERT_NAME=ca.crt --env FILEPATH=/etc/docker/ --env FILE=daemon.json wagoron/fw-update-pfc:04.05.10-27
             printf "Please wait 20 minutes.  Leave PLC alone until $(date -d "20 minutes" +"%Y-%m-%d %H:%M:%S")\n";
-            sleep 10
-            /etc/config_tools/fwupdate status
+            sleep 10;
+            /etc/config_tools/fwupdate status;
             exit;
         ;;  
         x) clear;
