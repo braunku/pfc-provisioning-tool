@@ -219,7 +219,7 @@ while [ $opt != '' ]
             echo
             docker run -d --restart on-failure:1 --name=fw  --env PASSWORD="$PASSWORD" --env SERVICE_NAME=fw --env MAX_UPDATE_RETRYS=5 --env CERT_NAME=ca.crt --env FILEPATH=/etc/docker/ --env FILE=daemon.json wagoautomation/fw-update-pfc200:04.04.03-26
             printf "Please wait 15 minutes";
-            show_cc100_container_menu;
+            show_pfc200_fw_menu;
         ;;   
         v) clear;
             option_picked "Option u Picked - Update PFC200 FW27";
@@ -227,7 +227,7 @@ while [ $opt != '' ]
             echo
             docker run -d --restart on-failure:1 --name=fw  --env PASSWORD="$PASSWORD" --env SERVICE_NAME=fw --env MAX_UPDATE_RETRYS=5 --env CERT_NAME=ca.crt --env FILEPATH=/etc/docker/ --env FILE=daemon.json wagoron/fw-update-pfc:04.05.10-27
             printf "Please wait 15 minutes";
-            show_cc100_container_menu;
+            show_pfc200_fw_menu;
         ;;  
         x) clear;
             chmod +x menu.sh;
