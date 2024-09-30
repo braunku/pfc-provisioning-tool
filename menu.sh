@@ -71,7 +71,8 @@ show_pfc200_fw_menu(){
     printf "\n${menu}********* PFC200 Firwmare Update ***********${normal}\n"
     printf "\n${menu}Please put PLC Run switch to stop before proceeding. ${normal}\n"
     printf "\n${menu}Update takes 15-20min. ${normal}\n"
-    printf "${menu} ${number} w)${menu} Remove all Docker images & containers (Warning!) ${normal}\n"
+    printf "${menu} ${number} w)${menu} Remove all Docker images & containers (Warning!) ${normal}\n"    
+    printf "${menu} ${number} t)${menu} FW25 ${normal}\n"
     printf "${menu} ${number} u)${menu} FW26 ${normal}\n"
     printf "${menu} ${number} v)${menu} FW27 ${normal}\n"
     printf "${menu} ${number} z)${menu} Main Menu ${normal}\n"
@@ -214,6 +215,17 @@ while [ $opt != '' ]
             docker run -d --restart unless-stopped --name mosquitto2 -p 1883:1883 -p 8883:8883 -p 9001:9001 -v $(pwd)/mosquitto.conf:/mosquitto/config/mosquitto.conf eclipse-mosquitto:latest
             printf "Mosquitto 2.0 Installed";
             show_cc100_container_menu;
+        ;;   
+        t) clear;
+            option_picked "Option u Picked - Update PFC200 FW25";
+            docker rm /fw
+            read -sp "Enter root password: " PASSWORD
+            echo
+            docker run -d --restart on-failure:1 --name=fw  --env PASSWORD="$PASSWORD" --env SERVICE_NAME=fw --env MAX_UPDATE_RETRYS=5 --env CERT_NAME=ca.crt --env FILEPATH=/etc/docker/ --env FILE=daemon.json wagoautomation/fw-update-pfc200:04.03.03-25
+            printf "Please wait 20 minutes.  Leave PLC alone.";
+            sleep 10;
+            /etc/config-tools/fwupdate status;
+            exit;
         ;;   
         u) clear;
             option_picked "Option u Picked - Update PFC200 FW26";
