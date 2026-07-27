@@ -152,7 +152,7 @@ while [ $opt != '' ]
         a) clear;
             option_picked "Option a Picked - Install Node-RED";
             docker volume create --name node_red_user_data;
-            docker run --restart unless-stopped -d --name node-red --network=host --security-opt seccomp:unconfined -v node_red_user_data:/data nodered/node-red:latest-minimal;
+            docker run --restart unless-stopped -d --name node-red --network=host --security-opt seccomp:unconfined -v node_red_user_data:/data nodered/node-red:4.1-debian;
             printf "Node-RED Installed";
             show_pfc200_container_menu;
         ;;
@@ -199,7 +199,7 @@ while [ $opt != '' ]
         ;;
         p) clear;
             option_picked "Option p Picked - Install CC100 Node-RED";
-            docker run -d --restart unless-stopped --name wago-node-red --privileged=true --security-opt seccomp:unconfined --user=root --network=host -v node_red_user_data:/data nodered/node-red:latest-minimal;
+            docker run -d --restart unless-stopped --name wago-node-red --privileged=true --security-opt seccomp:unconfined --user=root --network=host -v node_red_user_data:/data nodered/node-red:4.1-debian;
             printf "Node-RED CC100 Installed";
             show_cc100_container_menu;
         ;;
